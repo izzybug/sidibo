@@ -6,20 +6,20 @@ if(isset($_POST['signin']))
 	$username=$_POST['username'];
 	$password=md5($_POST['password']);
 
-	$sql ="SELECT * FROM tblemployees where EmailId ='$username' AND Password ='$password'";
+	$sql ="SELECT * FROM pengguna where email ='$username' AND Password ='$password'";
 	$query= mysqli_query($conn, $sql);
 	$count = mysqli_num_rows($query);
 	if($count > 0)
 	{
 		while ($row = mysqli_fetch_assoc($query)) {
-		    if ($row['role'] == 'Admin') {
-		    	$_SESSION['alogin']=$row['emp_id'];
-		    	$_SESSION['arole']=$row['Department'];
+		    if ($row['role'] == 'admin') {
+		    	$_SESSION['alogin']=$row['id'];
+		    	// $_SESSION['arole']=$row['role'];
 			 	echo "<script type='text/javascript'> document.location = 'admin/index.php'; </script>";
 		    }
-		    elseif ($row['role'] == 'Student') {
-		    	$_SESSION['alogin']=$row['emp_id'];
-		    	$_SESSION['arole']=$row['Department'];
+		    elseif ($row['role'] == 'user') {
+		    	$_SESSION['alogin']=$row['id'];
+		    	// $_SESSION['arole']=$row['Department'];
 			 	echo "<script type='text/javascript'> document.location = 'staff/index.php'; </script>";
 		    }
 		    else {
@@ -32,7 +32,6 @@ if(isset($_POST['signin']))
 	else{
 	  
 	  echo "<script>alert('Invalid Details');</script>";
-
 	}
 
 }
@@ -90,11 +89,13 @@ if(isset($_POST['signin']))
 				</div>
 				<div class="col-md-6 col-lg-6">
 					<div class="login-box bg-white box-shadow border-radius-10">
+						<?php $query= mysqli_query($conn,"select * from pengguna where id = '1'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
+						?>
 						<div class="login-title">
-							<h2 class="text-center text-primary">Welcome To SIDIBO</h2>
+							<h2 class="text-center text-primary">Welcome To <?php echo $row['namaLengkap']; ?></h2>
 						</div>
 						<form name="signin" method="post">
-						
 							<div class="input-group custom">
 								<input type="text" class="form-control form-control-lg" placeholder="Email ID" name="username" id="username">
 								<div class="input-group-append custom">

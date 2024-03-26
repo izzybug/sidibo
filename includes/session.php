@@ -8,5 +8,5 @@ if (!isset($_SESSION['alogin']) || empty($_SESSION['alogin'])) {
 }
 
 $session_id = $_SESSION['alogin'];
-$session_depart = $_SESSION['arole'];
+// $session_depart = $_SESSION['arole'];
 ?>
