@@ -22,7 +22,7 @@
 <?php
 $host = "adimsaraf-do-user-14642497-0.c.db.ondigitalocean.com";
 $port = "25060";
-$database = "simdefraf";
+$database = "sidibo";
 $username = "doadmin";
 $password = "AVNS_LRtarBbfNBHfTE5S_iZ";
 
