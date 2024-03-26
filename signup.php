@@ -14,13 +14,16 @@ if (isset($_POST['signup'])) {
     $nomor = $_POST['nomor'];
     $alamat = $_POST['alamat'];
     $email = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Menggunakan password_hash untuk mengamankan password
     $status = 0;
 
+    // Menggunakan parameterized query untuk menghindari SQL injection
     $query = "INSERT INTO pengguna(namaLengkap, jenisKelamin, tempatLahir, tglLahir, nomor, alamat, email, password, status, location)
-              VALUES ('$namaLengkap', '$jenisKelamin', '$tempatLahir', '$tglLahir', '$nomor', '$alamat', '$email', '$password', '$status', '../vendors/images/logo-poltek.png')";
-
-    $result = mysqli_query($conn, $query);
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '../vendors/images/logo-poltek.png')";
+    
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "ssssssssi", $namaLengkap, $jenisKelamin, $tempatLahir, $tglLahir, $nomor, $alamat, $email, $password, $status);
+    $result = mysqli_stmt_execute($stmt);
 
     if ($result) {
         echo "<script>alert('Successfully Sign Up');</script>";
@@ -28,8 +31,9 @@ if (isset($_POST['signup'])) {
     } else {
         echo "<script>alert('Something went wrong. Please try again');</script>";
     }
-	}
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>
