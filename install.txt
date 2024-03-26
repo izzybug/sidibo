@@ -1,0 +1,5 @@
+1. Extract to folder htdocs on XAMPP folder
+2. Start apache and mysql
+3. Go to browser and open phpmyadmin (localhost/phpmyadmin)
+4. Import db to phpmyadmin (the db file is inside the siparti/db folder)
+5. Lunch and enjoy:)

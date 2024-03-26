@@ -1,0 +1,11 @@
+admin
+user : james@gmail.com
+pass : james
+
+Dosen
+user : gideon@gmail.com
+pass : james
+
+Student
+user : bridget@gmail.com
+pass : james
