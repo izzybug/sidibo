@@ -14,7 +14,7 @@ if (isset($_POST['signup'])) {
     $nomor = $_POST['nomor'];
     $alamat = $_POST['alamat'];
     $email = $_POST['username'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
     $status = 0;
 
     $query = "INSERT INTO pengguna (namaLengkap, jenisKelamin, tempatLahir, tglLahir, nomor, alamat, email, password, status, location)
@@ -86,7 +86,7 @@ if (isset($_POST['signup'])) {
 				<div class="pd-20 card-box mb-30 col-md-12 col-lg-12">
 					<div class=" border-radius-10">
 						<div class="login-title">
-							<h2 class="text-center text-primary">Welcome To SIDIBO</h2>
+							<h2 class="text-center text-primary">Daftar yuk, ke SIDIBO</h2>
 						</div>
 						<br>
 						<form action="" method="post">
@@ -136,22 +136,16 @@ if (isset($_POST['signup'])) {
 							</div>
 							<div class="row">
 								<div class="input-group custom col-md-6 col-sm-12">
-									<input type="text" class="form-control form-control-lg" placeholder="Email ID" name="username" id="username">
-									<div class="input-group-append custom">
-										<span class="input-group-text"></span>
-									</div>
+									<input type="email" class="form-control form-control-lg" placeholder="Email ID" name="username" id="username">
 								</div>
 								<div class="input-group custom col-md-6 col-sm-12">
 									<input type="password" class="form-control form-control-lg" placeholder="**********"name="password" id="password">
-									<div class="input-group-append custom">
-										<span class="input-group-text"></span>
-									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="input-group mb-0">
-									   <input class="btn btn-primary btn-lg btn-block" name="signup" id="signup" type="submit" value="Sign Up">
+									   <button class="btn btn-primary btn-lg btn-block" name="signup" id="signup" data-toggle="modal">Sign&nbsp;Up</button>
 									</div>
 								</div>
 							</div>
