@@ -10,15 +10,15 @@ if (isset($_POST['signup'])) {
     $namaLengkap = $_POST['nama'];
     $jenisKelamin = $_POST['gender'];
     $tempatLahir = $_POST['tempatLahir'];
-    $tglLahir = md5($_POST['tglLahir']);
+    $tglLahir = $_POST['tglLahir'];
     $nomor = $_POST['nomor'];
     $alamat = $_POST['alamat'];
     $email = $_POST['username'];
     $password = md5($_POST['password']);
     $status = 0;
 
-    $query = "INSERT INTO pengguna (namaLengkap, jenisKelamin, tempatLahir, tglLahir, nomor, alamat, email, password, status, location)
-              VALUES ('$namaLengkap', '$jenisKelamin', '$tempatLahir', '$tglLahir', '$nomor', '$alamat', '$email', $password, $status, '../vendors/images/logo-poltek.png')";
+    $query = "INSERT INTO pengguna(namaLengkap, jenisKelamin, tempatLahir, tglLahir, nomor, alamat, email, password, status, location)
+              VALUES ('$namaLengkap', '$jenisKelamin', '$tempatLahir', '$tglLahir', '$nomor', '$alamat', '$email', '$password', '$status', '../vendors/images/logo-poltek.png')";
 
     $result = mysqli_query($conn, $query);
 
