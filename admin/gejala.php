@@ -144,7 +144,7 @@
 	                                            <td><?php echo htmlentities($result->gejala);?></td>
 												<td>
 													<div class="table-actions">
-														<a href="edit_department.php?edit=<?php echo htmlentities($result->kode);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
+														<a href="edit_gejala.php?edit=<?php echo htmlentities($result->kode);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
 														<a href="gejala.php?delete=<?php echo htmlentities($result->kode);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
 													</div>
 												</td>

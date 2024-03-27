@@ -3,12 +3,12 @@
 <?php $get_id = $_GET['edit']; ?>
 <?php 
 	 if (isset($_GET['delete'])) {
-		$leave_type_id = $_GET['delete'];
-		$sql = "DELETE FROM tblkeperluan where id = ".$leave_type_id;
+		$kode = $_GET['delete'];
+		$sql = "DELETE FROM dataPenyakit where kode = ".$kode;
 		$result = mysqli_query($conn, $sql);
 		if ($result) {
-			echo "<script>alert('Keperluan deleted Successfully');</script>";
-     		echo "<script type='text/javascript'> document.location = 'add_keperluan.php'; </script>";
+			echo "<script>alert('deleted Successfully');</script>";
+     		echo "<script type='text/javascript'> document.location = 'penyakit.php'; </script>";
 			
 		}
 	}
@@ -17,13 +17,13 @@
 <?php
  if(isset($_POST['edit']))
 {
-	 $leavetype=$_POST['Keperluan'];
-	 $description=$_POST['description'];
+	 $kode=$_POST['kode'];
+	 $penyakit=$_POST['penyakit'];
 
-    $result = mysqli_query($conn,"update tblkeperluan set Keperluan='$leavetype', Description='$description' where id = '$get_id' ");
+    $result = mysqli_query($conn,"update dataPenyakit set kode = '$kode' , penyakit ='$penyakit' where kode = '$get_id' ");
     if ($result) {
      	echo "<script>alert('Record Successfully Updated');</script>";
-     	echo "<script type='text/javascript'> document.location = 'add_keperluan.php'; </script>";
+     	echo "<script type='text/javascript'> document.location = 'penyakit.php'; </script>";
 	} else{
 	  die(mysqli_error());
    }
@@ -33,7 +33,7 @@
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div>
+			<!-- <div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div> -->
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -59,12 +59,12 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>List Keperluan</h4>
+									<h4>Data Penyakit</h4>
 								</div>
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Edit Keperluan</li>
+										<li class="breadcrumb-item active" aria-current="page">Edit Penyakit</li>
 									</ol>
 								</nav>
 							</div>
@@ -74,26 +74,27 @@
 					<div class="row">
 						<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Edit Keperluan</h2>
+								<h2 class="mb-30 h4">Edit Penyakit</h2>
 								<section>
 									<?php
-									$query = mysqli_query($conn,"SELECT * from tblkeperluan where id = '$get_id'")or die(mysqli_error());
+									$query = mysqli_query($conn,"SELECT * from dataPenyakit where kode = '$get_id'")or die(mysqli_error());
 									$row = mysqli_fetch_array($query);
 									?>
+
 									<form name="save" method="post">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label >Keperluan</label>
-												<input name="leavetype" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['Keperluan']; ?>">
+												<label >Kode</label>
+												<input name="kode" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['kode']; ?>">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label>Description</label>
-												<textarea name="description" style="height: 5em;" class="form-control text_area" type="text"><?php echo $row['Description']; ?></textarea>
+												<label>Penyakit</label>
+												<input name="penyakit" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['penyakit']; ?>">
 											</div>
 										</div>
 									</div>
@@ -109,20 +110,20 @@
 						
 						<div class="col-lg-8 col-md-6 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">List Keperluan</h2>
+								<h2 class="mb-30 h4">Data Gejala</h2>
 								<div class="pb-20">
-									<table class="data-table table stripe hover nowrap">
+								<table class="data-table table stripe hover nowrap">
 										<thead>
 										<tr>
-											<th class="table-plus">KEPERLUAN</th>
-											<th class="table-plus">DESCRIPTION</th>
-											<th class="table-plus">TANGGAL DIBUAT</th>
-											<th class="datatable-nosort">ACTION</th>
+											<th>NO.</th>
+											<th class="table-plus">KODE</th>
+											<th>PENYAKIT</th>
+											<th class="datatable-nosort">AKSI</th>
 										</tr>
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT * from tblkeperluan";
+											<?php $sql = "SELECT * from dataPenyakit";
 											$query = $dbh -> prepare($sql);
 											$query->execute();
 											$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -133,12 +134,12 @@
 											{               ?>  
 
 											<tr>
-												<td> <?php echo htmlentities($result->LeaveType);?></td>
-	                                            <td><?php echo htmlentities($result->Description);?></td>
-	                                            <td><?php echo htmlentities($result->date_from." - ".$result->date_to);?></td>
+												<td> <?php echo htmlentities($cnt);?></td>
+	                                            <td><?php echo htmlentities($result->kode);?></td>
+	                                            <td><?php echo htmlentities($result->penyakit);?></td>
 												<td>
 													<div class="table-actions">
-														<a href="add_keperluan.php?delete=<?php echo htmlentities($result->id);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
+														<a href="edit_penyakit.php?delete=<?php echo htmlentities($result->kode);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
 													</div>
 												</td>
 											</tr>
@@ -150,7 +151,6 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
 
 				</div>

@@ -1,10 +1,10 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
-
+<?php $get_id = $_GET['edit']; ?>
 <?php 
 	 if (isset($_GET['delete'])) {
-		$id = $_GET['delete'];
-		$sql = "DELETE FROM dataPertanyaan where id = ".$id;
+		$kode = $_GET['delete'];
+		$sql = "DELETE FROM dataPertanyaan where id = ".$kode;
 		$result = mysqli_query($conn, $sql);
 		if ($result) {
 			echo "<script>alert('deleted Successfully');</script>";
@@ -15,22 +15,22 @@
 ?>
 
 <?php
- if(isset($_POST['add']))
+ if(isset($_POST['edit']))
 {
 	$gejala=$_POST['gejala'];
 	$pertanyaan=$_POST['pertanyaan'];
 	$kode=$_POST['kode'];
 
-	$query = mysqli_query($conn,"insert into dataPertanyaan (gejala, pertanyaan, kode)
-	values ('$gejala', '$pertanyaan', '$kode')") or die(mysqli_error()); 
-
-	if ($query) {
-		echo "<script>alert('Added Successfully');</script>";
-		echo "<script type='text/javascript'> document.location = 'pertanyaan.php'; </script>";
-	}
+    $result = mysqli_query($conn,"update dataPertanyaan set gejala = '$gejala' , pertanyaan ='$pertanyaan', kode = '$kode' where id = '$get_id' ");
+    if ($result) {
+     	echo "<script>alert('Record Successfully Updated');</script>";
+     	echo "<script type='text/javascript'> document.location = 'pertanyaan.php'; </script>";
+	} else{
+	  die(mysqli_error());
+   }
 }
-?>
 
+?>
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
@@ -60,12 +60,12 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>Data Pertanyaan</h4>
+									<h4>Data pertanyaan</h4>
 								</div>
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Data Pertanyaan</li>
+										<li class="breadcrumb-item active" aria-current="page">Edit pertanyaan</li>
 									</ol>
 								</nav>
 							</div>
@@ -75,7 +75,7 @@
 					<div class="row">
 						<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Pertanyaan baru</h2>
+								<h2 class="mb-30 h4">Edit pertanyaan</h2>
 								<section>
 									<form name="save" method="post">
 									<div class="row">
@@ -83,46 +83,58 @@
 											<div class="form-group">
 												<label >Kode</label>
 												<select name="kode" class="custom-select form-control" required="true" autocomplete="off">
-												<option value="">Pilih kode</option>
+												<?php
+													$query = mysqli_query($conn,"SELECT * from dataPertanyaan where id = '$get_id'")or die(mysqli_error());
+													$row_up = mysqli_fetch_array($query);
+												 ?>
+												<option value="<?php echo $row_up['kode']; ?>"><?php echo $row_up['kode']; ?></option>
 													<?php
-													$query = mysqli_query($conn,"select * from dataGejala");
+													$query = mysqli_query($conn,"select * from dataPertanyaan");
 													while($row = mysqli_fetch_array($query)){
 													
 													?>
 													<option value="<?php echo $row['kode']; ?>"><?php echo $row['kode']; ?></option>
 													<?php } ?>
-												</select>
+											</select>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label >Gejala</label>
-												<select name="gejala" class="custom-select form-control" required="true" autocomplete="off">
-												<option value="">Pilih Gejala</option>
+												<label >Kode</label>
+												<select name="kode" class="custom-select form-control" required="true" autocomplete="off">
+												<?php
+													$query = mysqli_query($conn,"SELECT * from dataPertanyaan where id = '$get_id'")or die(mysqli_error());
+													$row_up = mysqli_fetch_array($query);
+												 ?>
+												<option value="<?php echo $row_up['gejala']; ?>"><?php echo $row_up['gejala']; ?></option>
 													<?php
-													$query = mysqli_query($conn,"select * from dataGejala");
+													$query = mysqli_query($conn,"select * from dataPertanyaan");
 													while($row = mysqli_fetch_array($query)){
 													
 													?>
 													<option value="<?php echo $row['gejala']; ?>"><?php echo $row['gejala']; ?></option>
 													<?php } ?>
-												</select>
+											</select>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
+												<?php
+												$query = mysqli_query($conn,"SELECT * from dataPertanyaan where id = '$get_id'")or die(mysqli_error());
+												$row = mysqli_fetch_array($query);
+												?>
 												<label>Pertanyaan</label>
-												<textarea name="pertanyaan" style="height: 5em;" class="form-control text_area" type="text"></textarea>
+												<input name="pertanyaan" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['pertanyaan']; ?>">
 											</div>
 										</div>
 									</div>
 									<div class="col-sm-12 text-right">
 										<div class="dropdown">
-										   <input class="btn btn-primary" type="submit" value="REGISTER" name="add" id="add">
+										   <input class="btn btn-primary" type="submit" value="UPDATE" name="edit" id="edit">
 									    </div>
 									</div>
 								   </form>
@@ -132,16 +144,15 @@
 						
 						<div class="col-lg-8 col-md-6 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Data Pertanyaan</h2>
+								<h2 class="mb-30 h4">Data Gejala</h2>
 								<div class="pb-20">
-									<table class="data-table table stripe hover nowrap">
+								<table class="data-table table stripe hover nowrap">
 										<thead>
 										<tr>
-											<th class="table-plus">No.</th>
+											<th>NO.</th>
 											<th class="table-plus">KODE</th>
-											<th class="table-plus">GEJALA</th>
-											<th class="table-plus">PERTANYAAN</th>
-											<th class="datatable-nosort">ACTION</th>
+											<th>PENYAKIT</th>
+											<th class="datatable-nosort">AKSI</th>
 										</tr>
 										</thead>
 										<tbody>
@@ -158,13 +169,11 @@
 
 											<tr>
 												<td> <?php echo htmlentities($cnt);?></td>
-												<td><?php echo htmlentities($result->kode);?></td>
-	                                            <td><?php echo htmlentities($result->gejala);?></td>
-	                                            <td><?php echo htmlentities($result->pertanyaan);?></td>
+	                                            <td><?php echo htmlentities($result->kode);?></td>
+	                                            <td><?php echo htmlentities($result->penyakit);?></td>
 												<td>
 													<div class="table-actions">
-														<a href="edit_pertanyaan.php?edit=<?php echo htmlentities($result->id);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
-														<a href="pertanyaan.php?delete=<?php echo htmlentities($result->id);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
+														<a href="edit_penyakit.php?delete=<?php echo htmlentities($result->kode);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
 													</div>
 												</td>
 											</tr>
@@ -184,13 +193,7 @@
 		</div>
 	</div>
 	<!-- js -->
-	<!-- <script>
-    document.getElementById('gejala').addEventListener('change', function() {
-        var selectedOption = this.options[this.selectedIndex];
-        var kodeGejala = selectedOption.getAttribute('data-kode');
-        document.getElementById('kode').value = kodeGejala;
-    });
-</script> -->
+
 	<?php include('includes/scripts.php')?>
 </body>
 </html>
