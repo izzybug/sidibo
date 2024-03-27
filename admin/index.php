@@ -3,7 +3,7 @@
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div>
+			<div class="loader-logo"><img src="../vendors/images/sidibo.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -38,7 +38,7 @@
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
 							Welcome back <div class="weight-600 font-30 text-blue"><?php echo $row['FirstName']. " " .$row['LastName']; ?>,</div>
 						</h4>
-						<p class="font-18 max-width-600">Ini adalah Sistem Perizinan Karya Tulis Ilmiah Poltekkes Tasikmalaya.</p>
+						<p class="font-18 max-width-600">Ini adalah Sistem Deteksi Dini Tuberkulosis Poltekkes Tasikmalaya.</p>
 					</div>
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo($empcount);?></div>
-								<div class="font-14 text-secondary weight-500">Total Students</div>
+								<div class="font-14 text-secondary weight-500">Total Users</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#00eccf"><i class="icon-copy dw dw-user-2"></i></div>
@@ -84,7 +84,7 @@
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo htmlentities($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Approved KTI</div>
+								<div class="font-14 text-secondary weight-500">Total Gejala</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#09cc06"><span class="icon-copy fa fa-hourglass"></span></div>
@@ -108,7 +108,7 @@
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Pending KTI</div>
+								<div class="font-14 text-secondary weight-500">Total Pertanyaan</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon"><i class="icon-copy fa fa-hourglass-end" aria-hidden="true"></i></div>
@@ -132,7 +132,7 @@
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Rejected KTI</div>
+								<div class="font-14 text-secondary weight-500">Total Penyakit</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#ff5b5b"><i class="icon-copy fa fa-hourglass-o" aria-hidden="true"></i></div>
@@ -143,10 +143,10 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-4 col-md-6 mb-20">
+				<div class="col-lg-6 col-md-12 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
 						<div class="d-flex justify-content-between pb-10">
-							<div class="h5 mb-0">Department Heads</div>
+							<div class="h5 mb-0">Admin</div>
 							<div class="table-actions">
 								<a title="VIEW" href="student.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
 							</div>
@@ -165,7 +165,7 @@
 											<img src="<?php echo (!empty($row['location'])) ? '../uploads/'.$row['location'] : '../uploads/NO-IMAGE-AVAILABLE.jpg'; ?>" class="border-radius-100 box-shadow" width="50" height="50" alt="">
 										</div>
 										<div class="txt">
-											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7"><?php echo $row['Department']; ?></span>
+											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Aktif</span>
 											<div class="font-14 weight-600"><?php echo $row['FirstName'] . " " . $row['LastName']; ?></div>
 											<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['EmailId']; ?></div>
 										</div>
@@ -177,22 +177,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 mb-20">
+				
+				<div class="col-lg-6 col-md-12 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
 						<div class="d-flex justify-content-between">
-							<div class="h5 mb-0">Application Setup</div>
-							<div class="table-actions">
-								<a title="VIEW" href="student.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
-							</div>
-						</div>
-
-						<div id="application-chart"></div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-20">
-					<div class="card-box height-100-p pd-20 min-height-200px">
-						<div class="d-flex justify-content-between">
-							<div class="h5 mb-0">Student</div>
+							<div class="h5 mb-0">Users</div>
 							<div class="table-actions">
 								<a title="VIEW" href="student.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
 							</div>

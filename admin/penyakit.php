@@ -3,12 +3,12 @@
 
 <?php 
 	 if (isset($_GET['delete'])) {
-		$department_id = $_GET['delete'];
-		$sql = "DELETE FROM tblprogramstudi where id = ".$department_id;
+		$penyakit_id = $_GET['delete'];
+		$sql = "DELETE FROM dataPenyakit where kode = ".$penyakit_id;
 		$result = mysqli_query($conn, $sql);
 		if ($result) {
-			echo "<script>alert('Program Studi deleted Successfully');</script>";
-     		echo "<script type='text/javascript'> document.location = 'department.php'; </script>";
+			echo "<script>alert('deleted Successfully');</script>";
+     		echo "<script type='text/javascript'> document.location = 'penyakit.php'; </script>";
 			
 		}
 	}
@@ -17,23 +17,23 @@
 <?php
  if(isset($_POST['add']))
 {
-	 $deptname=$_POST['ProgramStudi'];
-	$deptshortname=$_POST['Prodi'];
+	 $kode=$_POST['kode'];
+	 $penyakit=$_POST['penyakit'];
 
-     $query = mysqli_query($conn,"select * from tblprogramstudi where ProgramStudi = '$deptname'")or die(mysqli_error());
+     $query = mysqli_query($conn,"select * from dataPenyakit where penyakit = '$'")or die(mysqli_error());
 	 $count = mysqli_num_rows($query);
      
      if ($count > 0){ 
-     	echo "<script>alert('Department Already exist');</script>";
+     	echo "<script>alert('Already exist');</script>";
       }
       else{
-        $query = mysqli_query($conn,"insert into tblprogramstudi (ProgramStudi, Prodi)
-  		 values ('$deptname', '$deptshortname')      
+        $query = mysqli_query($conn,"insert into dataPenyakit (kode, penyakit)
+  		 values ('$kode', '$penyakit')      
 		") or die(mysqli_error()); 
 
 		if ($query) {
-			echo "<script>alert('Program Studi Added Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'department.php'; </script>";
+			echo "<script>alert('Added Successfully');</script>";
+			echo "<script type='text/javascript'> document.location = 'penyakit.php'; </script>";
 		}
     }
 
@@ -43,7 +43,7 @@
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div>
+			<!-- <div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div> -->
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -69,12 +69,12 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>List Program Studi</h4>
+									<h4>Data Penyakit</h4>
 								</div>
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Program Studi</li>
+										<li class="breadcrumb-item active" aria-current="page">Data Penyakit</li>
 									</ol>
 								</nav>
 							</div>
@@ -84,22 +84,22 @@
 					<div class="row">
 						<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Program studi Baru</h2>
+								<h2 class="mb-30 h4">Tambah Penyakit</h2>
 								<section>
 									<form name="save" method="post">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label >Program Studi</label>
-												<input name="departmentname" type="text" class="form-control" required="true" autocomplete="off">
+												<label >Kode</label>
+												<input name="kode" type="text" class="form-control" required="true" autocomplete="off">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label>Singkatan Program Studi</label>
-												<input name="departmentshortname" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase">
+												<label>Penyakit</label>
+												<textarea name="penyakit" style="height: 5em;" class="form-control" type="text"></textarea>
 											</div>
 										</div>
 									</div>
@@ -115,20 +115,20 @@
 						
 						<div class="col-lg-8 col-md-6 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">List Program Studi</h2>
+								<h2 class="mb-30 h4">List Penyakit</h2>
 								<div class="pb-20">
 									<table class="data-table table stripe hover nowrap">
 										<thead>
 										<tr>
-											<th>SR NO.</th>
-											<th class="table-plus">PROGRAM STUDI</th>
-											<th>SINGKATAN PRODI</th>
-											<th class="datatable-nosort">ACTION</th>
+											<th class="table-plus">No.</th>
+											<th class="table-plus">KODE</th>
+											<th class="table-plus">PENYAKIT</th>
+											<th class="datatable-nosort">AKSI</th>
 										</tr>
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT * from tblprogramstudi";
+											<?php $sql = "SELECT * from dataPenyakit";
 											$query = $dbh -> prepare($sql);
 											$query->execute();
 											$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -140,12 +140,12 @@
 
 											<tr>
 												<td> <?php echo htmlentities($cnt);?></td>
-	                                            <td><?php echo htmlentities($result->ProgramStudi);?></td>
-	                                            <td><?php echo htmlentities($result->Prodi);?></td>
+	                                            <td><?php echo htmlentities($result->kode);?></td>
+	                                            <td><?php echo htmlentities($result->penyakit);?></td>
 												<td>
 													<div class="table-actions">
-														<a href="edit_department.php?edit=<?php echo htmlentities($result->id);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
-														<a href="department.php?delete=<?php echo htmlentities($result->id);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
+														<a href="edit_keperluan.php?edit=<?php echo htmlentities($result->kode);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
+														<a href="penyakit.php?delete=<?php echo htmlentities($result->kode);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
 													</div>
 												</td>
 											</tr>

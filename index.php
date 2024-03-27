@@ -71,12 +71,12 @@ if(isset($_POST['signin']))
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
-<body class="login-page" style="background: url('https://1.bp.blogspot.com/-1_9xItJqkkU/YIbvrQEqHMI/AAAAAAAAN1E/z8JPviBIKV0EFrMUt_7uIK-cLjBLg1_9QCLcBGAsYHQ/w1200-h630-p-k-no-nu/cropped-IMG_9697-png-8-crop-1.png') no-repeat center center fixed; background-size: cover;">
+<body class="login-page" style="background: url('cool-background (2).png') no-repeat center center fixed; background-size: cover;">
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
 				<a href="login.html">
-					<img src="vendors/images/siparti-dark.png" alt="">
+					<img src="vendors/images/sidibo.png" alt="">
 				</a>
 			</div>
 		</div>
@@ -89,11 +89,8 @@ if(isset($_POST['signin']))
 				</div>
 				<div class="col-md-6 col-lg-6">
 					<div class="login-box bg-white box-shadow border-radius-10">
-						<?php $query= mysqli_query($conn,"select * from pengguna where id = '1'")or die(mysqli_error());
-								$row = mysqli_fetch_array($query);
-						?>
 						<div class="login-title">
-							<h2 class="text-center text-primary">Welcome To <?php echo $row['namaLengkap']; ?></h2>
+							<h2 class="text-center text-primary">Welcome To SIDIBO</h2>
 						</div>
 						<form name="signin" method="post">
 							<div class="input-group custom">
@@ -111,11 +108,11 @@ if(isset($_POST['signin']))
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="input-group mb-0">
-									   <input class="btn btn-primary btn-lg btn-block" name="signin" id="signin" type="submit" value="Sign In">
+									   <input class="btn btn-primary btn-lg btn-block" name="signin" id="signin" type="submit" value="Masuk">
 									</div>
 									<br>
 									<div class="input-group mb-0">
-										Don't have an account? <a href="signup.php"> &nbsp;Signup Now</a>
+										Don't have an account? <a href="signup.php"> &nbsp;Daftar Sekarang</a>
 									</div>
 								</div>
 							</div>

@@ -1,39 +1,49 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
-<?php $get_id = $_GET['edit']; ?>
+
 <?php 
 	 if (isset($_GET['delete'])) {
-		$department_id = $_GET['delete'];
-		$sql = "DELETE FROM tblprogramstudi where id = ".$department_id;
+		$gejala_id = $_GET['delete'];
+		$sql = "DELETE FROM dataGejala where kode = ".$gejala_id;
 		$result = mysqli_query($conn, $sql);
 		if ($result) {
-			echo "<script>alert('Program Studi deleted Successfully');</script>";
-     		echo "<script type='text/javascript'> document.location = 'department.php'; </script>";
+			echo "<script>alert('deleted Successfully');</script>";
+     		echo "<script type='text/javascript'> document.location = 'gejala.php'; </script>";
 			
 		}
 	}
 ?>
 
 <?php
- if(isset($_POST['edit']))
+ if(isset($_POST['add']))
 {
-	 $deptname=$_POST['ProgramStudi'];
-	 $deptshortname=$_POST['Prodi'];
+	$kode=$_POST['kode'];
+	$gejala=$_POST['gejala'];
 
-    $result = mysqli_query($conn,"update tblprogramstudi set ProgramStudi = '$deptname' , Prodi ='$deptshortname' where id = '$get_id' ");
-    if ($result) {
-     	echo "<script>alert('Record Successfully Updated');</script>";
-     	echo "<script type='text/javascript'> document.location = 'gejala.php'; </script>";
-	} else{
-	  die(mysqli_error());
-   }
+     $query = mysqli_query($conn,"select * from dataGejala where gejala = '$gejala'")or die(mysqli_error());
+	 $count = mysqli_num_rows($query);
+     
+     if ($count > 0){ 
+     	echo "<script>alert('Gejala Already exist');</script>";
+      }
+      else{
+        $query = mysqli_query($conn,"insert into dataGejala (kode, gejala)
+  		 values ('$kode', '$gejala')      
+		") or die(mysqli_error()); 
+
+		if ($query) {
+			echo "<script>alert('Added Successfully');</script>";
+			echo "<script type='text/javascript'> document.location = 'gejala.php'; </script>";
+		}
+    }
+
 }
 
 ?>
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div>
+			<!-- <div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div> -->
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -59,12 +69,12 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>Department List</h4>
+									<h4>Data Gejala</h4>
 								</div>
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Edit Program Studi</li>
+										<li class="breadcrumb-item active" aria-current="page">Data Gejala</li>
 									</ol>
 								</nav>
 							</div>
@@ -74,33 +84,28 @@
 					<div class="row">
 						<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Edit Program Studi</h2>
+								<h2 class="mb-30 h4">Gejala Baru</h2>
 								<section>
-									<?php
-									$query = mysqli_query($conn,"SELECT * from tblprogramstudi where id = '$get_id'")or die(mysqli_error());
-									$row = mysqli_fetch_array($query);
-									?>
-
 									<form name="save" method="post">
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label >Program Studi</label>
-												<input name="departmentname" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['ProgramStudi']; ?>">
+												<label >Kode</label>
+												<input name="kode" type="text" class="form-control" required="true" autocomplete="off">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label>Singkatan Program Studi</label>
-												<input name="departmentshortname" type="text" class="form-control" required="true" autocomplete="off" style="text-transform:uppercase" value="<?php echo $row['Prodi']; ?>">
+												<label>Gejala</label>
+												<input name="gejala" type="text" class="form-control" required="true" autocomplete="off">
 											</div>
 										</div>
 									</div>
 									<div class="col-sm-12 text-right">
 										<div class="dropdown">
-										   <input class="btn btn-primary" type="submit" value="UPDATE" name="edit" id="edit">
+										   <input class="btn btn-primary" type="submit" value="REGISTER" name="add" id="add">
 									    </div>
 									</div>
 								   </form>
@@ -110,20 +115,20 @@
 						
 						<div class="col-lg-8 col-md-6 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Department List</h2>
+								<h2 class="mb-30 h4">List Gejala</h2>
 								<div class="pb-20">
 									<table class="data-table table stripe hover nowrap">
 										<thead>
 										<tr>
-											<th>SR NO.</th>
-											<th class="table-plus">	PROGRAM STUDI</th>
-											<th>SINGKATAN PRODI</th>
-											<th class="datatable-nosort">ACTION</th>
+											<th>NO.</th>
+											<th class="table-plus">KODE</th>
+											<th>GEJALA</th>
+											<th class="datatable-nosort">AKSI</th>
 										</tr>
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT * from tblprogramstudi";
+											<?php $sql = "SELECT * from dataGejala";
 											$query = $dbh -> prepare($sql);
 											$query->execute();
 											$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -135,11 +140,12 @@
 
 											<tr>
 												<td> <?php echo htmlentities($cnt);?></td>
-	                                            <td><?php echo htmlentities($result->ProgramStudi);?></td>
-	                                            <td><?php echo htmlentities($result->Prodi);?></td>
+	                                            <td><?php echo htmlentities($result->kode);?></td>
+	                                            <td><?php echo htmlentities($result->gejala);?></td>
 												<td>
 													<div class="table-actions">
-														<a href="department.php?delete=<?php echo htmlentities($result->id);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
+														<a href="edit_department.php?edit=<?php echo htmlentities($result->kode);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
+														<a href="gejala.php?delete=<?php echo htmlentities($result->kode);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
 													</div>
 												</td>
 											</tr>

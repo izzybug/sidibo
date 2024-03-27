@@ -14,11 +14,12 @@ if (isset($_POST['signup'])) {
     $nomor = $_POST['nomor'];
     $alamat = $_POST['alamat'];
     $email = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password'];
+	$role = 'user';	
     $status = 0;
 
-    $query = "INSERT INTO pengguna(namaLengkap, jenisKelamin, tempatLahir, tglLahir, nomor, alamat, email, password, status, location)
-              VALUES ('$namaLengkap', '$jenisKelamin', '$tempatLahir', '$tglLahir', '$nomor', '$alamat', '$email', '$password', '$status', '../vendors/images/logo-poltek.png')";
+    $query = "INSERT INTO pengguna(namaLengkap, jenisKelamin, tempatLahir, tglLahir, nomor, alamat, email, password, role, status, location)
+              VALUES ('$namaLengkap', '$jenisKelamin', '$tempatLahir', '$tglLahir', '$nomor', '$alamat', '$email', '$password', '$role', '$status', '../vendors/images/logo-poltek.png')";
 
     $result = mysqli_query($conn, $query);
 
@@ -64,7 +65,7 @@ if (isset($_POST['signup'])) {
 		gtag('config', 'UA-119386393-1');
 	</script>
 </head>
-<body class="login-page" style="background: url('https://1.bp.blogspot.com/-1_9xItJqkkU/YIbvrQEqHMI/AAAAAAAAN1E/z8JPviBIKV0EFrMUt_7uIK-cLjBLg1_9QCLcBGAsYHQ/w1200-h630-p-k-no-nu/cropped-IMG_9697-png-8-crop-1.png') no-repeat center center fixed; background-size: cover;">
+<body class="login-page" style="background: url('cool-background (2).png') no-repeat center center fixed; background-size: cover;">
 	<div class="login-header box-shadow">
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
@@ -96,10 +97,10 @@ if (isset($_POST['signup'])) {
 								</div>
 								<div class="input-group custom col-md-6 col-sm-12">
 									
-									<select name="gender" class="custom-select form-control" required="true" autocomplete="off">
+									<select id="gender"  name="gender" class="custom-select form-control" required="true" autocomplete="off">
 												<option value="">Jenis Kelamin</option>
-												<option value="male">Laki-laki</option>
-												<option value="female">Perempuan</option>
+												<option value="laki-laki">Laki-laki</option>
+												<option value="perempuan">Perempuan</option>
 									</select>
 								</div>
 							</div>
@@ -111,7 +112,7 @@ if (isset($_POST['signup'])) {
 									</div>
 								</div>
 								<div class="input-group custom col-md-6 col-sm-12">
-									<input name="tglLahir" type="text" class="form-control date-picker" placeholder="Tanggal Lahir" required="true">
+									<input name="tglLahir" type="text" class="form-control date-picker" placeholder="Tanggal Lahir"  id="tglLahir">
 									<div class="input-group-append custom">
 										<span class="input-group-text"></span>
 									</div>
@@ -142,7 +143,7 @@ if (isset($_POST['signup'])) {
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="input-group mb-0">
-									   <button class="btn btn-primary btn-lg btn-block" name="signup" id="signup" data-toggle="modal">Sign&nbsp;Up</button>
+									   <button class="btn btn-primary btn-lg btn-block" name="signup" id="signup" data-toggle="modal">Daftar&nbsp;Sekarang</button>
 									</div>
 								</div>
 							</div>
@@ -150,7 +151,7 @@ if (isset($_POST['signup'])) {
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="input-group mb-0">
-										Already have an account? <a href="index.php"> &nbsp;Signin Now</a>
+										Already have an account? <a href="index.php"> &nbsp;Masuk Sekarang</a>
 									</div>
 								</div>
 							</div>
