@@ -70,7 +70,7 @@ if (isset($_POST['signup'])) {
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
 				<a href="login.html">
-					<img src="vendors/images/siparti-dark.png" alt="">
+					<img src="vendors/images/sidibo.png" alt="">
 				</a>
 			</div>
 		</div>
@@ -134,7 +134,7 @@ if (isset($_POST['signup'])) {
 							</div>
 							<div class="row">
 								<div class="input-group custom col-md-6 col-sm-12">
-									<input type="text" class="form-control form-control-lg" placeholder="Email ID" name="username" id="username">
+									<input type="text" class="form-control form-control-lg" placeholder="Username" name="username" id="username">
 								</div>
 								<div class="input-group custom col-md-6 col-sm-12">
 									<input type="password" class="form-control form-control-lg" placeholder="**********"name="password" id="password">
