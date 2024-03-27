@@ -3,12 +3,12 @@
 
 <?php 
 	 if (isset($_GET['delete'])) {
-		$leave_type_id = $_GET['delete'];
-		$sql = "DELETE FROM tblkeperluan where id = ".$keperluan_id;
+		$id = $_GET['delete'];
+		$sql = "DELETE FROM informasiData where id = ".$id;
 		$result = mysqli_query($conn, $sql);
 		if ($result) {
-			echo "<script>alert('Keperluan deleted Successfully');</script>";
-     		echo "<script type='text/javascript'> document.location = 'leave_type.php'; </script>";
+			echo "<script>alert('deleted Successfully');</script>";
+     		echo "<script type='text/javascript'> document.location = 'informasi.php'; </script>";
 			
 		}
 	}
@@ -17,35 +17,29 @@
 <?php
  if(isset($_POST['add']))
 {
-	 $leavetype=$_POST['leavetype'];
-	 $description=$_POST['description'];
-	 $dtefrom=date('d-m-Y', strtotime($_POST['date_from']));
-	 $dteto=date('d-m-Y', strtotime($_POST['date_to']));
+	 $nama=$_POST['nama'];
+	 $jenisKelamin=$_POST['description'];
+	 $umur=$_POST['umur'];
+	 $pendThr=$_POST['pendThr'];
+	 $pekerjaan=$_POST['pekerjaan'];
+	 $alamat=$_POST['pendThr'];
+	 $id_user=$_SESSION['id'];
 
-     $query = mysqli_query($conn,"select * from tblkeperluan where Keperluan = '$leavetype'")or die(mysqli_error());
-	 $count = mysqli_num_rows($query);
-     
-     if ($count > 0){ 
-     	echo "<script>alert('LeaveType Already exist');</script>";
-      }
-      else{
-        $query = mysqli_query($conn,"insert into tblkeperluan (Keperluan, Description)
-  		 values ('$leavetype', '$description', '$dtefrom', '$dteto')      
+    $query = mysqli_query($conn,"insert into informasiData (nama, jenisKelamin, umur, pendTerakhir, pekerjaan, alamat, id_user)
+  		 values ('$nama', '$jenisKelamin', '$umur', '$pendThr', '$pekerjaan', '$alamat', '$id_user')      
 		") or die(mysqli_error()); 
 
 		if ($query) {
-			echo "<script>alert('Keperluan Added');</script>";
-			echo "<script type='text/javascript'> document.location = 'leave_type.php'; </script>";
+			echo "<script>alert('Added Successfully');</script>";
+			echo "<script type='text/javascript'> document.location = 'informasi.php'; </script>";
 		}
-    }
-
 }
 
 ?>
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div>
+			<!-- <div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div> -->
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -71,19 +65,19 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
 								<div class="title">
-									<h4>Leave Type List</h4>
+									<h4>Informasi Data</h4>
 								</div>
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Jenis Kepeluan</li>
+										<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Informasi Data</li>
 									</ol>
 								</nav>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
 								<h2 class="mb-30 h4">Keperluan baru</h2>
@@ -113,24 +107,28 @@
 								   </form>
 							    </section>
 							</div>
-						</div>
+						</div> -->
 						
-						<div class="col-lg-8 col-md-6 col-sm-12 mb-30">
+						<div class="col-lg-12 col-md-12 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Jenis Keperluan</h2>
+								<h2 class="mb-30 h4">Informasi Data</h2>
 								<div class="pb-20">
 									<table class="data-table table stripe hover nowrap">
 										<thead>
 										<tr>
-											<th class="table-plus">KEPERLUAN</th>
-											<th class="table-plus">DESCRIPTION</th>
-											<th class="table-plus">TANGGAL DIBUAT</th>
-											<th class="datatable-nosort">ACTION</th>
+											<th class="table-plus">No.</th>
+											<th class="table-plus ">NAMA</th>
+											<th class="table-plus datatable-nosort">JENIS KELAMIN</th>
+											<th class="table-plus">UMUR</th>
+											<th class="table-plus datatable-nosort">PENDIDIKAN TERAKHIR</th>
+											<th class="table-plus datatable-nosort">PEKERJAAN</th>
+											<th class="table-plus datatable-nosort">ALAMAT</th>
+											<th class="table-plus">HASIL DETEKSI</th>
 										</tr>
 										</thead>
 										<tbody>
 
-											<?php $sql = "SELECT * from tblkeperluan";
+											<?php $sql = "SELECT * from informasiData";
 											$query = $dbh -> prepare($sql);
 											$query->execute();
 											$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -141,15 +139,14 @@
 											{               ?>  
 
 											<tr>
-												<td> <?php echo htmlentities($result->Keperluan);?></td>
-	                                            <td><?php echo htmlentities($result->Description);?></td>
-	                                            <td><?php echo htmlentities($result->CreationDate);?></td>
-												<td>
-													<div class="table-actions">
-														<a href="edit_keperluan.php?edit=<?php echo htmlentities($result->id);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
-														<a href="leave_type.php?delete=<?php echo htmlentities($result->id);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
-													</div>
-												</td>
+												<td><?php echo htmlentities($cnt);?></td>
+	                                            <td><?php echo htmlentities($result->nama);?></td>
+	                                            <td><?php echo htmlentities($result->jenisKelamin);?></td>
+	                                            <td><?php echo htmlentities($result->umur);?></td>
+	                                            <td><?php echo htmlentities($result->pendTerakhir);?></td>
+	                                            <td><?php echo htmlentities($result->pekerjaan);?></td>
+	                                            <td><?php echo htmlentities($result->alamat);?></td>
+	                                            <td><?php echo htmlentities($result->hasilDeteksi);?></td>
 											</tr>
 
 											<?php $cnt++;} }?>  

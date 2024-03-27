@@ -33,7 +33,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="add_keperluan.php" class="dropdown-toggle no-arrow">
+						<a href="informasi.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-calendar1"></span><span class="mtext">Informasi Data</span>
 						</a>
 					</li>
@@ -42,8 +42,8 @@
 							<span class="micon dw dw-library"></span><span class="mtext">Mengelolah Users</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="add_student.php">New User</a></li>
-							<li><a href="student.php">Manage Users</a></li>
+							<li><a href="add_pengguna.php">New User</a></li>
+							<li><a href="pengguna.php">Manage Users</a></li>
 						</ul>
 					</li>
 					<!-- <li class="dropdown">

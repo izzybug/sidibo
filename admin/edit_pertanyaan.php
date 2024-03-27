@@ -29,8 +29,8 @@
 	  die(mysqli_error());
    }
 }
-
 ?>
+
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
@@ -81,12 +81,12 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label >Kode</label>
-												<select name="kode" class="custom-select form-control" required="true" autocomplete="off">
 												<?php
 													$query = mysqli_query($conn,"SELECT * from dataPertanyaan where id = '$get_id'")or die(mysqli_error());
 													$row_up = mysqli_fetch_array($query);
 												 ?>
+												<label >Kode</label>
+												<select name="kode" class="custom-select form-control" required="true" autocomplete="off">
 												<option value="<?php echo $row_up['kode']; ?>"><?php echo $row_up['kode']; ?></option>
 													<?php
 													$query = mysqli_query($conn,"select * from dataPertanyaan");
@@ -102,12 +102,8 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label >Kode</label>
-												<select name="kode" class="custom-select form-control" required="true" autocomplete="off">
-												<?php
-													$query = mysqli_query($conn,"SELECT * from dataPertanyaan where id = '$get_id'")or die(mysqli_error());
-													$row_up = mysqli_fetch_array($query);
-												 ?>
+												<label >Gejala</label>
+												<select name="gejala" class="custom-select form-control" required="true" autocomplete="off">
 												<option value="<?php echo $row_up['gejala']; ?>"><?php echo $row_up['gejala']; ?></option>
 													<?php
 													$query = mysqli_query($conn,"select * from dataPertanyaan");
@@ -123,12 +119,8 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<?php
-												$query = mysqli_query($conn,"SELECT * from dataPertanyaan where id = '$get_id'")or die(mysqli_error());
-												$row = mysqli_fetch_array($query);
-												?>
 												<label>Pertanyaan</label>
-												<input name="pertanyaan" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row['pertanyaan']; ?>">
+												<input name="pertanyaan" type="text" class="form-control" required="true" autocomplete="off" value="<?php echo $row_up['pertanyaan']; ?>">
 											</div>
 										</div>
 									</div>
