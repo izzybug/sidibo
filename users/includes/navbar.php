@@ -16,7 +16,7 @@
 			<div class="user-info-dropdown">
 				<div class="dropdown">
 
-					<?php $query= mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id'")or die(mysqli_error());
+					<?php $query= mysqli_query($conn,"select * from pengguna where id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 						?>
 
@@ -24,10 +24,10 @@
 						<span class="user-icon">
 							<img style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" src="<?php echo (!empty($row['location'])) ? '../uploads/'.$row['location'] : '../uploads/NO-IMAGE-AVAILABLE.jpg'; ?>" alt="">
 						</span>
-						<span class="user-name"><?php echo $row['FirstName']. " " .$row['LastName']; ?></span>
+						<span class="user-name"><?php echo $row['namaLengkap']; ?></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="staff_profile.php"><i class="dw dw-user1"></i> Profile</a>
+						<a class="dropdown-item" href="my_profile.php"><i class="dw dw-user1"></i> Profile</a>
 						<a class="dropdown-item" href="../logout.php"><i class="dw dw-logout"></i> Log Out</a>
 					</div>
 				</div>

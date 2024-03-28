@@ -31,7 +31,7 @@
 	</style>
 
 <body>
-	<div class="pre-loader">
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -42,7 +42,7 @@
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<?php include('includes/navbar.php')?>
 

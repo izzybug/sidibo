@@ -37,6 +37,11 @@
 							<span class="micon dw dw-calendar1"></span><span class="mtext">Informasi Data</span>
 						</a>
 					</li>
+					<li>
+						<a href="informasiPenyakit.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-calendar1"></span><span class="mtext">Informasi Penyakit</span>
+						</a>
+					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon dw dw-library"></span><span class="mtext">Mengelolah Users</span>

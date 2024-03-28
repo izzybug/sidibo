@@ -20,7 +20,7 @@ if(isset($_POST['signin']))
 		    elseif ($row['role'] == 'user') {
 		    	$_SESSION['alogin']=$row['id'];
 		    	// $_SESSION['arole']=$row['Department'];
-			 	echo "<script type='text/javascript'> document.location = 'staff/index.php'; </script>";
+			 	echo "<script type='text/javascript'> document.location = 'users/index.php'; </script>";
 		    }
 		    else {
 		    	$_SESSION['alogin']=$row['emp_id'];

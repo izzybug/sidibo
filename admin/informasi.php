@@ -14,28 +14,6 @@
 	}
 ?>
 
-<?php
- if(isset($_POST['add']))
-{
-	 $nama=$_POST['nama'];
-	 $jenisKelamin=$_POST['description'];
-	 $umur=$_POST['umur'];
-	 $pendThr=$_POST['pendThr'];
-	 $pekerjaan=$_POST['pekerjaan'];
-	 $alamat=$_POST['pendThr'];
-	 $id_user=$_SESSION['id'];
-
-    $query = mysqli_query($conn,"insert into informasiData (nama, jenisKelamin, umur, pendTerakhir, pekerjaan, alamat, id_user)
-  		 values ('$nama', '$jenisKelamin', '$umur', '$pendThr', '$pekerjaan', '$alamat', '$id_user')      
-		") or die(mysqli_error()); 
-
-		if ($query) {
-			echo "<script>alert('Added Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'informasi.php'; </script>";
-		}
-}
-
-?>
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
@@ -76,42 +54,13 @@
 							</div>
 						</div>
 					</div>
-
-					<!-- <div class="row">
-						<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
-							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Keperluan baru</h2>
-								<section>
-									<form name="save" method="post">
-									<div class="row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<label >Keperluan</label>
-												<input name="leavetype" type="text" class="form-control" required="true" autocomplete="off">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<label>Deskripsi</label>
-												<textarea name="description" style="height: 5em;" class="form-control text_area" type="text"></textarea>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-12 text-right">
-										<div class="dropdown">
-										   <input class="btn btn-primary" type="submit" value="REGISTER" name="add" id="add">
-									    </div>
-									</div>
-								   </form>
-							    </section>
-							</div>
-						</div> -->
 						
 						<div class="col-lg-12 col-md-12 col-sm-12 mb-30">
 							<div class="card-box pd-30 pt-10 height-100-p">
-								<h2 class="mb-30 h4">Informasi Data</h2>
+								<div class="row ">
+									<h2 class="mb-10 h4 col-lg-11 ">Informasi Data</h2>
+									<a class="btn btn-primary float-right"  href="print.php"><i class="fa fa-print"></i> Print</a>
+								</div>
 								<div class="pb-20">
 									<table class="data-table table stripe hover nowrap">
 										<thead>

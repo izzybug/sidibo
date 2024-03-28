@@ -3,11 +3,11 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>SIPARTI</title>
+	<title>SIDIBO</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="../vendors/images/logo-poltek.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="../vendors/images/logo-poltek.png">
+	<link rel="icon" type="image/png" sizes="42x52" href="../vendors/images/logo-poltek.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="../vendors/images/logo-poltek.png">
 
 	<!-- Mobile Specific Metas -->
@@ -23,18 +23,14 @@
 	<link rel="stylesheet" type="text/css" href="../src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="../vendors/styles/style.css">
 
+	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
-	(function() {
-		'use strict';
 		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-		dataLayer.push(arguments);
-		}
+		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', 'UA-119386393-1');
-	})();
-	</script>
 
+		gtag('config', 'UA-119386393-1');
+	</script>
 </head>
 <?php include('../includes/config.php'); ?>

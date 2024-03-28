@@ -19,6 +19,3 @@
 	<script src="../src/plugins/datatables/js/vfs_fonts.js"></script>
 	
 	<script src="../vendors/scripts/advanced-components.js"></script>
-	
-	
-
