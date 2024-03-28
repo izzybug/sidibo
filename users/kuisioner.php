@@ -11,7 +11,7 @@ if(isset($_POST['apply']))
 	$pendThr=$_POST['pendThr'];
 	$pekerjaan=$_POST['pekerjaan'];
 	$alamat=$_POST['alamat'];
-	$id_user=$_SESSION['id'];
+	$id_user=$session_id;
 
 	// Insert ke tabel informasiData
 	$query_insert = mysqli_query($conn, "INSERT INTO informasiData (nama, jenisKelamin, umur, tinggiBadan, beratBadan, pendTerakhir, pekerjaan, alamat, id_user)
@@ -131,9 +131,17 @@ if(isset($_POST['apply']))
 										<div class="form-group">
 											<label>Pendidikan Terakhir :</label>
 											<select name="pendThr" class="custom-select form-control" required="true" autocomplete="off">
-												<option value="">Select</option>
-												<option value="laki-laki">laki-laki</option>
-												<option value="perempuan">perempuan</option>
+												<option value="">Belum Memilih</option>
+												<option value="Tidak/Belum Sekolah">Tidak/Belum Sekolah</option>
+												<option value="Tidak Tamat SD/Sederajat">Tidak Tamat SD/Sederajat</option>
+												<option value="Tamat SD/Sederajat">Tamat SD/Sederajat</option>
+												<option value="SMP/Sederajat">SMP/Sederajat</option>
+												<option value="SMA">SMA</option>
+												<option value="SMK">SMK</option>
+												<option value="Diploma I-III">Diploma I-III</option>
+												<option value="DiplomaIV/Strata I">DiplomaIV/Strata I</option>
+												<option value="Strata II">Strata II</option>
+												<option value="Strata III">Strata III</option>
 											</select>
 										</div>
 									</div>
