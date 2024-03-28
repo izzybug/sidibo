@@ -86,10 +86,6 @@ if(isset($_POST['apply']))
 					<div class="wizard-content">
 						<form method="post" action="">
 							<section>
-								<?php
-									$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$get_id' ")or die(mysqli_error());
-									$new_row = mysqli_fetch_array($query);
-									?>
 								<div class="row">
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
