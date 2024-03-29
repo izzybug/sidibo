@@ -14,9 +14,16 @@ if(isset($_POST['apply']))
 	$hubungan=$_POST['hubungan'];
 	$merokok=$_POST['merokok'];
 	$riwayat=$_POST['riwayat'];
-	$penyakit=$_POST['penyakit'];
 	$alamat=$_POST['alamat'];
 	$id_user=$session_id;
+
+	// Set nilai penyakit penyerta ke kosong jika riwayat komorbid dipilih tidak
+	$penyakit = ""; // Default value untuk penyakit penyerta
+	if ($riwayat == "Tidak") {
+		$penyakit = ""; // Jika riwayat komorbid tidak, maka set penyakit penyerta ke kosong
+	} else {
+		$penyakit=$_POST['penyakit']; // Jika riwayat komorbid ada, maka ambil nilai dari form
+	}
 
 	// Insert ke tabel informasiData
 	$query_insert = mysqli_query($conn, "INSERT INTO informasiData (nama, jenisKelamin, umur, tinggiBadan, beratBadan, pendTerakhir, pekerjaan, alamat, tinggalSerumah, hubungan, merokok, riwayatKomorbid, penyakitPenyerta, id_user)
@@ -200,7 +207,7 @@ if(isset($_POST['apply']))
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label>Riwayat Komorbid :</label>
-											<select name="riwayat" class="custom-select form-control" required="true" autocomplete="off">
+											<select id="riwayat-komorbid" name="riwayat" class="custom-select form-control" required="true" autocomplete="off">
 												<option value="">Belum Memilih</option>
 												<option value="Ya">Ya</option>
 												<option value="Tidak">Tidak</option>
@@ -208,9 +215,9 @@ if(isset($_POST['apply']))
 										</div>
 									</div>
 									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
+										<div class="form-group" id="penyakit-penyerta-container" style="display:none;">
 											<label>Penyakit Penyerta :</label>
-											<select name="penyakit" class="custom-select form-control" required="true" autocomplete="off">
+											<select id="penyakit-penyerta" name="penyakit" class="custom-select form-control" autocomplete="off">
 												<option value="">Belum Memilih</option>
 												<option value="HIV">HIV</option>
 												<option value="Diabetes Melitus">Diabetes Melitus</option>
@@ -247,6 +254,19 @@ if(isset($_POST['apply']))
 		</div>
 	</div>
 	<!-- js -->
+	<script>
+    document.getElementById("riwayat-komorbid").addEventListener("change", function() {
+        var penyakitPenyertaContainer = document.getElementById("penyakit-penyerta-container");
+        var penyakitPenyerta = document.getElementById("penyakit-penyerta");
+
+        if (this.value === "Ya") {
+            penyakitPenyertaContainer.style.display = "block";
+        } else {
+            penyakitPenyertaContainer.style.display = "none";
+            penyakitPenyerta.value = ""; // Reset nilai saat penyakit penyerta disembunyikan
+        }
+    });
+	</script>
 	<?php include('includes/scripts.php')?>
 </body>
 </html>

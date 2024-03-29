@@ -151,7 +151,7 @@ if (isset($_POST['signup'])) {
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="input-group mb-0">
-										Already have an account? <a href="index.php"> &nbsp;Masuk Sekarang</a>
+										Sudah punya akun? <a href="index.php"> &nbsp;Masuk Sekarang</a>
 									</div>
 								</div>
 							</div>

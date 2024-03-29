@@ -112,7 +112,7 @@ if(isset($_POST['signin']))
 									</div>
 									<br>
 									<div class="input-group mb-0">
-										Don't have an account? <a href="signup.php"> &nbsp;Daftar Sekarang</a>
+										Tidak punya akun? <a href="signup.php"> &nbsp;Daftar Sekarang</a>
 									</div>
 								</div>
 							</div>

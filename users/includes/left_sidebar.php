@@ -18,13 +18,22 @@
 						
 					</li>
 					<?php
-						$query =  mysqli_query($conn, "SELECT status FROM pengguna WHERE id = '$session_id'") or die(mysqli_error());
+						$query = mysqli_query($conn, "SELECT status FROM pengguna WHERE id = '$session_id'") or die(mysqli_error($conn));
 						$row = mysqli_fetch_array($query);
 
-						$status = $row['status']; // Contoh nilai status
+						$status = $row['status']; // Nilai status pengguna
 
 						// Tentukan URL berdasarkan nilai status
-						$url = $status == 0 ? 'kuisioner.php' : 'deteksi.php';
+						if ($status == 0) {
+							$url = 'kuisioner.php';
+						} elseif ($status == 1) {
+							$url = 'deteksi.php';
+						} elseif ($status == 2) {
+							$url = 'hasil.php';
+						} else {
+							// Status tidak valid, mungkin perlu ditangani sesuai kebutuhan
+							$url = '#'; // URL default jika status tidak valid
+						}
 					?>
 
 					<li>
@@ -32,7 +41,6 @@
 							<span class="micon dw dw-calendar1"></span><span class="mtext">Deteksi</span>
 						</a>
 					</li>
-
 					<!-- <li>
 						<a href="deteksi.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-calendar1"></span><span class="mtext">Deteksi</span>

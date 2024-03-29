@@ -2,6 +2,10 @@
 <?php include('../includes/session.php');?>
 
 <?php
+$query_update = mysqli_query($conn, "UPDATE pengguna SET status = 2 WHERE id = '$session_id'") or die(mysqli_error($conn));
+?>
+
+<?php
 $id = $session_id;
 $nilai = $_SESSION['hasil'];
 $hasil = ($nilai >= 50) ? "Berisiko Tuberkulosis Paru" : "Tidak Berisiko Tuberkulosis Paru";
@@ -16,6 +20,7 @@ if (isset($_POST['reset'])) {
     unset($_SESSION['persentase']);
     unset($_SESSION['pilihan']);
     unset($_SESSION['hasil']);
+	$query_update = mysqli_query($conn, "UPDATE pengguna SET status = 1 WHERE id = '$session_id'") or die(mysqli_error($conn));
 	header('Location:deteksi.php');
 	exit;
 }
@@ -107,10 +112,14 @@ if (isset($_POST['reset'])) {
 							?>
 						</div>
 						<div class="">
+							<?php
+							$query  = mysqli_query($conn, "SELECT * FROM informasiData WHERE id_user = $session_id");
+							$row = mysqli_fetch_array($query);
+							?>
 							<p>
-								Dari gejala-gejala yang Anda pilih. Hasil diagnosis anda adalah
-								<span style="background-color: yellow;">Tuberkulosis Paru <?php echo $nilai_progress; ?>%</span>.
-								Segera periksa diri ke dokter untuk mendapatkan penanganan lebih lanjut.
+								Dari gejala-gejala yang Anda pilih. Anda
+								<span style="background-color: yellow;"><?php echo $row['hasilDeteksi']; ?></span>,
+								segera periksa diri ke dokter untuk mendapatkan penanganan lebih lanjut.
 							</p>
 						</div>
 					</div>
@@ -123,7 +132,7 @@ if (isset($_POST['reset'])) {
 							</h2>
 							<br>
 							<div class="ml-15">
-								<img src="../vendors/images/photo2.jpg" alt="" width="300" height="300">
+								<img src="../vendors/images/Picture1.jpg" alt="" width="300" height="300">
 							</div>
 							<br>
 							<p class="m-10">
