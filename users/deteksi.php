@@ -1,29 +1,42 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
-<?php $get_id = $_GET['edit']; ?>
 <?php
-	if(isset($_POST['add_student']))
-	{
-	
-	$fname=$_POST['firstname'];
-	$lname=$_POST['lastname'];   
-	$email=$_POST['email'];  
-	$gender=$_POST['gender']; 
-	$dob=$_POST['dob']; 
-	$department=$_POST['department']; 
-	$address=$_POST['address'];  
-	$user_role=$_POST['user_role']; 
-	$NIM=$_POST['NIM']; 
 
-	$result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', Address='$address', role='$user_role', NIM='$NIM' where emp_id='$get_id'         
-		");
-	if ($result) {
-     	echo "<script>alert('Record Successfully Updated');</script>";
-     	echo "<script type='text/javascript'> document.location = 'student.php'; </script>";
-	} else{
-	  die(mysqli_error());
-   }
-		
+if (!isset($_SESSION['persentase'])) {
+    $_SESSION['persentase'] = [];
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['hasil'])) {
+    $query = mysqli_query($conn, "SELECT * FROM dataPertanyaan");
+    while ($row = mysqli_fetch_array($query)) {
+        $jawaban = $_POST['jawaban_' . $row['id']];
+		$id =  $row['id'];
+        $kode = $row['kode'];
+
+        if ($jawaban === 'Ya') {
+            $_SESSION['persentase'][] = $kode;
+            $_SESSION['pilihan'][] = $id;
+        }
+    }
+
+    echo "<script>alert('Pertanyaan yang dipilih: " . implode(', ', $_SESSION['pilihan']) . "');</script>";
+	// Hitung persentase
+	$Tb = array('G01', 'G04', 'G05', 'G07', 'G09', 'G10',);
+	$nilai = 0;
+	if (isset($_SESSION['persentase'])) {
+		foreach ($_SESSION['persentase'] as $value) {
+			if (in_array($value, $Tb)) {
+				$nilai += 1;
+			}
+		}
+	}
+	$Tb = $nilai / count($Tb);
+	$Akut = number_format($Tb, 3);
+	$hasil = $Akut * 100;
+	$_SESSION['hasil'] = $hasil;
+
+	// echo "<script>alert('Pertanyaan yang dipilih: " . implode(', ', $_SESSION['hasil']) . "');</script>";
+	header('Location:hasil.php');
 }
 
 ?>
@@ -89,11 +102,13 @@
 											while ($row = mysqli_fetch_array($query)) {
 												?>
 												<label style="font-size:20px;"><?php echo $row['pertanyaan']; ?></label><br>
+												<input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+												<input type="hidden" name="kode" value="<?php echo $row['kode']; ?>">
 												<label>
-													<input type="radio" name="jawaban_<?php echo $row['id']; ?>" value="1">&nbsp;Ya
+													<input type="radio" name="jawaban_<?php echo $row['id']; ?>" value="Ya">&nbsp;Ya
 												</label><br>
 												<label>
-													<input type="radio" name="jawaban_<?php echo $row['id']; ?>" value="0">&nbsp;Tidak
+													<input type="radio" name="jawaban_<?php echo $row['id']; ?>" value="Tidak">&nbsp;Tidak
 												</label><br><br>
 											<?php } ?>
 										</div>

@@ -10,12 +10,17 @@ if(isset($_POST['apply']))
 	$berat=$_POST['berat'];
 	$pendThr=$_POST['pendThr'];
 	$pekerjaan=$_POST['pekerjaan'];
+	$tinggal=$_POST['tinggal'];
+	$hubungan=$_POST['hubungan'];
+	$merokok=$_POST['merokok'];
+	$riwayat=$_POST['riwayat'];
+	$penyakit=$_POST['penyakit'];
 	$alamat=$_POST['alamat'];
 	$id_user=$session_id;
 
 	// Insert ke tabel informasiData
-	$query_insert = mysqli_query($conn, "INSERT INTO informasiData (nama, jenisKelamin, umur, tinggiBadan, beratBadan, pendTerakhir, pekerjaan, alamat, id_user)
-				VALUES ('$nama', '$jenisKelamin', '$umur', '$tinggi', '$berat', '$pendThr', '$pekerjaan', '$alamat', '$id_user')
+	$query_insert = mysqli_query($conn, "INSERT INTO informasiData (nama, jenisKelamin, umur, tinggiBadan, beratBadan, pendTerakhir, pekerjaan, alamat, tinggalSerumah, hubungan, merokok, riwayatKomorbid, penyakitPenyerta, id_user)
+				VALUES ('$nama', '$jenisKelamin', '$umur', '$tinggi', '$berat', '$pendThr', '$pekerjaan', '$alamat', '$tinggal', '$hubungan', '$merokok', '$riwayat', '$penyakit', '$id_user')
 			") or die(mysqli_error($conn));
 
 	// Update kolom status di tabel pengguna
@@ -24,7 +29,12 @@ if(isset($_POST['apply']))
 
 		if ($query_update) {
 			echo "<script>alert('Added Successfully');</script>";
-			echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+			$query = mysqli_query($conn,"select * from pengguna where id = '$session_id' ")or die(mysqli_error());
+			$row = mysqli_fetch_array($query);
+			$status = $row['status'];
+			if($status == 1){
+				echo "<script type='text/javascript'> document.location = 'deteksi.php'; </script>";
+			}
 		} else {
 			echo "<script>alert('Failed to Update Status');</script>";
 		}
@@ -143,13 +153,75 @@ if(isset($_POST['apply']))
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-6 col-sm-12">
+									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label>Pekerjaan :</label>
 											<input name="pekerjaan" type="text" class="form-control" required="true" autocomplete="off">
 										</div>
 									</div>
-									<div class="col-md-6 col-sm-12">
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Tinggal serumah dengan pasien TB paru :</label>
+											<select name="tinggal" class="custom-select form-control" required="true" autocomplete="off">
+												<option value="">Belum Memilih</option>
+												<option value="Ya">Ya</option>
+												<option value="Tidak">Tidak</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Hubungan dengan pasien TB paru :</label>
+											<select name="hubungan" class="custom-select form-control" required="true" autocomplete="off">
+												<option value="">Belum Memilih</option>
+												<option value="Istri/Suami">Istri/Suami</option>
+												<option value="Anak">Anak</option>
+												<option value="Cucu">Cucu</option>
+												<option value="Kakak/Adik">Kakak/Adik</option>
+												<option value="Kakek/Nenek">Kakek/Nenek</option>
+												<option value="Om/Tante">Om/Tante</option>
+												<option value="Keluarga Jauh">Keluarga Jauh</option>
+											</select>
+										</div>
+									</div>
+									
+								</div>
+								<div class="row">
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Merokok :</label>
+											<select name="merokok" class="custom-select form-control" required="true" autocomplete="off">
+												<option value="">Belum Memilih</option>
+												<option value="Ya">Ya</option>
+												<option value="Tidak">Tidak</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Riwayat Komorbid :</label>
+											<select name="riwayat" class="custom-select form-control" required="true" autocomplete="off">
+												<option value="">Belum Memilih</option>
+												<option value="Ya">Ya</option>
+												<option value="Tidak">Tidak</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-12">
+										<div class="form-group">
+											<label>Penyakit Penyerta :</label>
+											<select name="penyakit" class="custom-select form-control" required="true" autocomplete="off">
+												<option value="">Belum Memilih</option>
+												<option value="HIV">HIV</option>
+												<option value="Diabetes Melitus">Diabetes Melitus</option>
+												<option value="Asma">Asma</option>
+												<option value="Lainnya">Lainnya</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12">
 										<div class="form-group">
 											<label for="alamat">Alamat :</label>
 											<textarea id="alamat" name="alamat" class="form-control" required maxlength="150" rows="2" autocomplete="off"></textarea>
