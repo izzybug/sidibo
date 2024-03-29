@@ -123,7 +123,7 @@ if (isset($_POST['reset'])) {
 							</h2>
 							<br>
 							<div class="ml-15">
-								<img src="../vendors/images/photo2.jpg" alt="" style="margin-left:100px" width="300" height="300">
+								<img src="../vendors/images/photo2.jpg" alt="" width="300" height="300">
 							</div>
 							<br>
 							<p class="m-10">

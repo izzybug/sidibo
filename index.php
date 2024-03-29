@@ -4,7 +4,7 @@ include('includes/config.php');
 if(isset($_POST['signin']))
 {
 	$username=$_POST['username'];
-	$password=md5($_POST['password']);
+	$password=$_POST['password'];
 
 	$sql ="SELECT * FROM pengguna where email ='$username' AND Password ='$password'";
 	$query= mysqli_query($conn, $sql);
