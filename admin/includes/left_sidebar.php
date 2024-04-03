@@ -29,7 +29,7 @@
 					</li>
 					<li>
 						<a href="penyakit.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-calendar1"></span><span class="mtext">Data Penyakit</span>
+							<span class="micon dw dw-calendar1"></span><span class="mtext">Hasil Deteksi</span>
 						</a>
 					</li>
 					<li>

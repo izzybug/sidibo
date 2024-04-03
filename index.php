@@ -90,7 +90,7 @@ if(isset($_POST['signin']))
 				<div class="col-md-6 col-lg-6">
 					<div class="login-box bg-white box-shadow border-radius-10">
 						<div class="login-title">
-							<h2 class="text-center text-primary">Welcome To SIDIBO</h2>
+							<h2 class="text-center text-primary">Welcome To SIDITB</h2>
 						</div>
 						<form name="signin" method="post">
 							<div class="input-group custom">

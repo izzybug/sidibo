@@ -169,7 +169,7 @@ if(isset($_POST['apply']))
 									<div class="col-md-4 col-sm-12">
 										<div class="form-group">
 											<label>Tinggal serumah dengan pasien TB paru :</label>
-											<select name="tinggal" class="custom-select form-control" required="true" autocomplete="off">
+											<select id="tinggal" name="tinggal" class="custom-select form-control" required="true" autocomplete="off">
 												<option value="">Belum Memilih</option>
 												<option value="Ya">Ya</option>
 												<option value="Tidak">Tidak</option>
@@ -177,9 +177,9 @@ if(isset($_POST['apply']))
 										</div>
 									</div>
 									<div class="col-md-4 col-sm-12">
-										<div class="form-group">
+										<div class="form-group"  id="hubungan-container" style="display:none;">
 											<label>Hubungan dengan pasien TB paru :</label>
-											<select name="hubungan" class="custom-select form-control" required="true" autocomplete="off">
+											<select id="hubungan" name="hubungan" class="custom-select form-control"  autocomplete="off">
 												<option value="">Belum Memilih</option>
 												<option value="Istri/Suami">Istri/Suami</option>
 												<option value="Anak">Anak</option>
@@ -258,6 +258,19 @@ if(isset($_POST['apply']))
     document.getElementById("riwayat-komorbid").addEventListener("change", function() {
         var penyakitPenyertaContainer = document.getElementById("penyakit-penyerta-container");
         var penyakitPenyerta = document.getElementById("penyakit-penyerta");
+
+        if (this.value === "Ya") {
+            penyakitPenyertaContainer.style.display = "block";
+        } else {
+            penyakitPenyertaContainer.style.display = "none";
+            penyakitPenyerta.value = ""; // Reset nilai saat penyakit penyerta disembunyikan
+        }
+    });
+	</script>
+	<script>
+    document.getElementById("tinggal").addEventListener("change", function() {
+        var penyakitPenyertaContainer = document.getElementById("hubungan-container");
+        var penyakitPenyerta = document.getElementById("hubungan");
 
         if (this.value === "Ya") {
             penyakitPenyertaContainer.style.display = "block";

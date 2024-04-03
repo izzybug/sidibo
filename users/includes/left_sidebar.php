@@ -29,7 +29,7 @@
 						} elseif ($status == 1) {
 							$url = 'deteksi.php';
 						} elseif ($status == 2) {
-							$url = 'hasil.php';
+							$url = 'deteksi.php';
 						} else {
 							// Status tidak valid, mungkin perlu ditangani sesuai kebutuhan
 							$url = '#'; // URL default jika status tidak valid

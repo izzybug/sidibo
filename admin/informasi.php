@@ -62,7 +62,7 @@
 									<a class="btn btn-primary float-right"  href="print.php"><i class="fa fa-print"></i> Print</a>
 								</div>
 								<div class="pb-20">
-									<table class="data-table table stripe hover nowrap">
+									<table id="myTable" class="data-table table stripe hover nowrap">
 										<thead>
 										<tr>
 											<th class="table-plus">No.</th>
@@ -113,7 +113,15 @@
 		</div>
 	</div>
 	<!-- js -->
-
+	<script>
+		new DataTable('#myTable', {
+		layout: {
+			topStart: {
+				buttons: ['excel']
+			}
+		}
+	});
+	</script>
 	<?php include('includes/scripts.php')?>
 </body>
 </html>

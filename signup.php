@@ -15,11 +15,19 @@ if (isset($_POST['signup'])) {
     $alamat = $_POST['alamat'];
     $email = $_POST['username'];
     $password = $_POST['password'];
-	$role = 'user';	
+    $role = 'user';  
     $status = 0;
+    $location = '';
+
+    // Menentukan nilai location berdasarkan jenis kelamin
+    if ($jenisKelamin == 'laki-laki') {
+        $location = '../vendors/images/cowok.jpeg';
+    } elseif ($jenisKelamin == 'perempuan') {
+        $location = '../vendors/images/cewek.jpeg';
+    }
 
     $query = "INSERT INTO pengguna(namaLengkap, jenisKelamin, tempatLahir, tglLahir, nomor, alamat, email, password, role, status, location)
-              VALUES ('$namaLengkap', '$jenisKelamin', '$tempatLahir', '$tglLahir', '$nomor', '$alamat', '$email', '$password', '$role', '$status', '../vendors/images/logo-poltek.png')";
+              VALUES ('$namaLengkap', '$jenisKelamin', '$tempatLahir', '$tglLahir', '$nomor', '$alamat', '$email', '$password', '$role', '$status', '$location')";
 
     $result = mysqli_query($conn, $query);
 
@@ -29,7 +37,8 @@ if (isset($_POST['signup'])) {
     } else {
         echo "<script>alert('Something went wrong. Please try again');</script>";
     }
-	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +46,7 @@ if (isset($_POST['signup'])) {
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>SIDIBO</title>
+	<title>SIDITB</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/logo-poltek.png">
@@ -84,7 +93,7 @@ if (isset($_POST['signup'])) {
 				<div class="pd-20 card-box mb-30 col-md-12 col-lg-12">
 					<div class=" border-radius-10">
 						<div class="login-title">
-							<h2 class="text-center text-primary">Daftar yuk, ke SIDIBO</h2>
+							<h2 class="text-center text-primary">Daftar yuk, ke SIDITB</h2>
 						</div>
 						<br>
 						<form action="" method="post">

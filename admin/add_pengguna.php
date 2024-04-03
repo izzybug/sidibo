@@ -18,9 +18,18 @@ if (isset($_POST['add_user'])) {
     $password = md5($_POST['password']);
     $user_role = $_POST['user_role'];
     $status = 0;
+	$location = '';
+
+    // Menentukan nilai location berdasarkan jenis kelamin
+    if ($jenisKelamin == 'laki-laki') {
+        $location = '../vendors/images/cowok.jpeg';
+    } elseif ($jenisKelamin == 'perempuan') {
+        $location = '../vendors/images/cewek.jpeg';
+    }
+
 
     $query = "INSERT INTO pengguna (namaLengkap, jenisKelamin, tempatLahir, tglLahir, nomor, alamat, email, password, role, status, location)
-              VALUES ('$nama', '$jenisKelamin', '$tempatLahir', '$tglLahir', '$nomor', '$alamat', '$usr', '$password', '$user_role', $status, '../vendors/images/logo-poltek.png')";
+              VALUES ('$nama', '$jenisKelamin', '$tempatLahir', '$tglLahir', '$nomor', '$alamat', '$usr', '$password', '$user_role', '$status', '$location')";
 
     $result = mysqli_query($conn, $query);
 

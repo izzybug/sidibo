@@ -6,9 +6,9 @@
 	<title>SIDIBO</title>
 
 	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="../vendors/images/logo-poltek.png">
-	<link rel="icon" type="image/png" sizes="42x52" href="../vendors/images/logo-poltek.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="../vendors/images/logo-poltek.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../vendors/images/logo-poltek.jpg">
+	<link rel="icon" type="image/jpg" sizes="42x52" href="../vendors/images/logo-poltek.jpg">
+	<link rel="icon" type="image/jpg" sizes="16x16" href="../vendors/images/logo-poltek.jpg">
 
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -22,7 +22,19 @@
 	<link rel="stylesheet" type="text/css" href="../src/plugins/datatables/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="../src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="../vendors/styles/style.css">
-
+	<style>
+	.card {
+	width: 100%;
+	height: 60vh;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 50px;
+	padding: 25px;
+	border: 1px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 30px;
+	}
+	</style>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
