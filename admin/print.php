@@ -41,5 +41,6 @@ while($d = mysqli_fetch_array($data))
 $writer = new Xlsx($spreadsheet);
 $writer->save('Informasi Data.xlsx');
 echo "<script>window.location = 'Informasi Data.xlsx'</script>";
- 
+// header("Location: informasi.php");
+exit;
 ?>
