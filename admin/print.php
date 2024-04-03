@@ -1,7 +1,7 @@
 <?php include('../includes/config.php') ?>
 
 <?php
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 // Define the SQL query based on the id parameter
 // $sqlQuery = "SELECT * FROM informasiData";
 
