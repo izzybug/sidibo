@@ -59,7 +59,7 @@
 							<div class="card-box pd-30 pt-10 height-100-p">
 								<div class="row ">
 									<h2 class="mb-10 h4 col-lg-11 ">Informasi Data</h2>
-									<a class="btn btn-primary float-right"  href="print.php"><i class="fa fa-print"></i> Print</a>
+									<a class="btn btn-primary float-right"  href="print.php"><i class="fa fa-file-excel-o"></i>  &nbsp Print</a>
 								</div>
 								<div class="pb-20">
 									<table id="myTable" class="data-table table stripe hover nowrap">
@@ -114,12 +114,12 @@
 	</div>
 	<!-- js -->
 	<script>
-		new DataTable('#myTable', {
-		layout: {
-			topStart: {
-				buttons: ['excel']
-			}
-		}
+		$(document).ready(function() {
+		$('#myTable').DataTable();
+
+		$('#export-button').click(function() {
+			$('#myTable').DataTable().buttons('export', 'excel').trigger();
+		});
 	});
 	</script>
 	<?php include('includes/scripts.php')?>

@@ -1,5 +1,45 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
+
+<?php 
+	 if (isset($_GET['delete'])) {
+		$penyakit_id = $_GET['delete'];
+		$sql = "DELETE FROM dataPenyakit where kode = ".$penyakit_id;
+		$result = mysqli_query($conn, $sql);
+		if ($result) {
+			echo "<script>alert('deleted Successfully');</script>";
+     		echo "<script type='text/javascript'> document.location = 'penyakit.php'; </script>";
+			
+		}
+	}
+?>
+
+<?php
+ if(isset($_POST['add']))
+{
+	 $kode=$_POST['kode'];
+	 $penyakit=$_POST['penyakit'];
+
+     $query = mysqli_query($conn,"select * from dataPenyakit where penyakit = '$'")or die(mysqli_error());
+	 $count = mysqli_num_rows($query);
+     
+     if ($count > 0){ 
+     	echo "<script>alert('Already exist');</script>";
+      }
+      else{
+        $query = mysqli_query($conn,"insert into dataPenyakit (kode, penyakit)
+  		 values ('$kode', '$penyakit')      
+		") or die(mysqli_error()); 
+
+		if ($query) {
+			echo "<script>alert('Added Successfully');</script>";
+			echo "<script type='text/javascript'> document.location = 'penyakit.php'; </script>";
+		}
+    }
+
+}
+
+?>
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
@@ -23,171 +63,102 @@
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
-		<div class="pd-ltr-20">
-			<!-- <div class="card-box pd-20 height-100-p mb-30">
-				<div class="row align-items-center">
-					<div class="col-md-4 user-icon">
-						<img src="../vendors/images/banner-img.png" alt="">
-					</div>
-					<div class="col-md-8">
-
-						<?php $query= mysqli_query($conn,"select * from pengguna where id = '$session_id'")or die(mysqli_error());
-								$row = mysqli_fetch_array($query);
-						?>
-
-						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back <div class="weight-600 font-30 text-blue"><?php echo $row['namaLengkap']; ?>,</div>
-						</h4>
-						<p class="font-18 max-width-600">Ini adalah Sistem Deteksi Dini Tuberkulosis Poltekkes Tasikmalaya.</p>
-					</div>
-				</div>
-			</div> -->
-
-			<div class="card-box mb-30">
-				<div class="pd-20">
-					
-				</div>
-				<div class="pb-20">
-					<div id="konten2">
-						<h2 style="font-weight: bold;text-align: center;">Informasi Penyakit</h2>
-					</div>
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<div class="d-flex align-items-center flex-wrap justify-content-center pt-30">
-									<div class="container-fluid">
-										<div class="row align-items-center">
-											<div class="col-md-4 col-lg-4">
-												<div class=" bg-white box-shadow border-radius-10 pd-20 mb-20 card">
-													<div class="col align-self-center">
-														<h4 class="mb-4">Apa yang dimaksud dengan Tuberkulosis Paru?</h4>
-														<img src="gambar/1.png" class="card-img-top" alt="..." width="600" height="600">
-														<p class="mb-4 mt-5">
-														Tuberkulosis paru, atau dikenal juga sebagai TBC paru, adalah sebuah penyakit menular yang disebabkan oleh infeksi bakteri Mycobacterium tuberculosis di paru-paru.
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-4 col-lg-4 box-container">
-												<div class=" bg-white box-shadow border-radius-10 pd-20 mb-20 card">
-													<div class="col align-self-center">
-														<h4 class="mb-4">Apakah gejala dan tanda yang muncul akibat Tuberkulosis Paru?</h4>
-														<img src="gambar/2.png" class="card-img-top" alt="..." width="600" height="600">
-														<p class="mb-4 mt-5">
-														Gejala utama yang biasanya muncul pada pasien TBC paru adalah batuk berdahak yang berlangsung selama 2-3 minggu atau lebih.
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-4 col-lg-4">
-												<div class=" bg-white box-shadow border-radius-10 pd-20 mb-15 card">
-													<div class="col align-self-center">
-														<h4 class="mb-4">Bagaimana cara melakukan pemeriksaan Tuberkulosis Paru?</h4>
-														<img src="gambar/3.png" alt="..." >
-														<p class="mb-4 mt-5">
-														Pemeriksaan TBC paru dapat dilakukan dengan mengambil dan memeriksa sampel dahak dari penderita. Pemeriksaan dahak memerlukan dua kali pengambilan sampel, yaitu saat pasien datang ke layanan (Sewaktu) dan pagi hari saat bangun tidur (Pagi).
-														</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+					<div class="page-header">
+						<div class="row">
+							<div class="col-md-6 col-sm-12">
+								<div class="title">
+									<h4>Data Penyakit</h4>
 								</div>
+								<nav aria-label="breadcrumb" role="navigation">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Data Penyakit</li>
+									</ol>
+								</nav>
 							</div>
-							<div class="carousel-item">
-								<div class="d-flex align-items-center flex-wrap justify-content-center pt-30">
-									<div class="container-fluid">
-										<div class="row align-items-center">
-											<div class="col-md-4 col-lg-4 box-container">
-												<div class=" bg-white box-shadow border-radius-10 pd-20 mb-20 card">
-													<div class="col align-self-center">
-														<h4 class="mb-4">Bagaimana cara Tuberkulosis Paru menular?</h4>
-														<img src="gambar/4.jpg" class="card-img-top" alt="..." width="600" height="600">
-														<p class="mb-4 mt-5">
-														Penularan Tuberkulosis paru melibatkan udara, dimana bakteri dapat menyebar saat seseorang yang terinfeksi TBC paru batuk, bersin, atau berbicara, sehingga menyebarkan bakteri ke udara dalam bentuk droplet.
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-4 col-lg-4 box-container">
-												<div class=" bg-white box-shadow border-radius-10 pd-20 mb-20 card">
-													<div class="col align-self-center">
-														<h4 class="mb-4">Siapa saja yang termasuk dalam kelompok risiko Tuberkulosis Paru?</h4>
-														<img src="gambar/5.png" class="card-img-top" alt="..." width="200" height="200" style="width: 200px; height:200px;">
-														<p class="mb-4 mt-5">
-														Siapa saja yang termasuk dalam kelompok risiko Tuberkulosis Paru?
-														Beberapa kategori individu memiliki risiko lebih tinggi terkena penyakit Tuberkulosis paru, di antaranya: :
-														1. Anak-anak di bawah usia 5 tahun 
-														2. Orang tua yang berusia di atas 65 tahun memiliki risiko lebih tinggi terkena Tuberkulosis paru karena sistem kekebalan tubuh yang rentan.
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-4 col-lg-4 box-container">
-												<div class=" bg-white box-shadow border-radius-10 pd-20 mb-20 card">
-													<div class="col align-self-center">
-														<h4 class="mb-4">Bagaimana cara penanganan Tuberkulosis Paru ?</h4>
-														<img src="gambar/6.png" class="card-img-top" alt="..." width="200" height="200" style="width: 200px; height:200px;">
-														<p class="mb-4 mt-5">
-														Penanganan atau solusi yang dapat dilakukan jika dalam pengisian sistem deteksi dini ini dinyatakan bahwa seseorang berisiko terkena Tuberkulosis paru, meliputi :
-														1. Jika mengalami gejala-gejala TBC paru, segera lakukan pemeriksaan diri ke dokter atau fasilitas pelayanan kesehatan terdekat untuk menindaklanjuti penangan yang tepat dari penyakit tersebut.
-														2. Hidup sehat dengan mengonsumsi makanan yang bergizi dan berolahraga secara teratur.
-														</p>
-													</div>
-												</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-4 col-md-6 col-sm-12 mb-30">
+							<div class="card-box pd-30 pt-10 height-100-p">
+								<h2 class="mb-30 h4">Tambah Penyakit</h2>
+								<section>
+									<form name="save" method="post">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label >Kode</label>
+												<input name="kode" type="text" class="form-control" required="true" autocomplete="off">
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<div class="d-flex align-items-center flex-wrap justify-content-center pt-30">
-									<div class="container-fluid">
-										<div class="row align-items-center">
-											<div class="col-md-6 col-lg-6">
-												<div class="bg-white box-shadow border-radius-10 pd-20 mb-15 card">
-													<div class="col align-self-center">
-														<h4 class="mb-4">Apa dampak yang muncul akibat dari penyakit Tuberkulosis Paru?</h4>
-														<img src="gambar/7.png" alt="..." >
-														<p class="mb-4 mt-5">
-														1. Komplikasi Penyakit Lain
-														Tanpa penanganan yang sesuai, TBC paru bisa berakibat fatal. Bakteri TBC paru tidak hanya memengaruhi paru-paru, melainkan juga bisa menyebar ke bagian tubuh lain melalui peredaran darah, menyebabkan penyakit lain seperti (Baswedan dkk., 2022): 
-														a)	Kondisi sakit tulang belakang, seperti nyeri pada punggung dan kekakuan.
-														b)	Kerusakan pada sendi seperti arthritis umumnya memengaruhi persendian pada pinggul dan lutut.
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-md-6 col-lg-6">
-												<div class="bg-white box-shadow border-radius-10 pd-20 mb-15 card">
-													<div class="col align-self-center">
-														<h4 class="mb-4">Bagaimana cara untuk mencegah penyakit Tuberkulosis Paru?</h4>
-														<img src="gambar/8.png" alt="..." >
-														<p class="mb-4 mt-5">
-															Beberapa langkah yang bisa dilakukan untuk mencegah penularan TBC, diantaranya :
-															1)	Lakukan vaksinasi BCG (Bacillus Calmette-Guerin).
-															2)	Saat berada di tempat ramai, selalu kenakan masker.
-															3)	Menerapkan perilaku hidup bersih dan sehat, termasuk mencuci tangan secara teratur serta melakukan kebiasaan menjemur alas tidur secara teratur bertujuan untuk menghindari kelembaban yang dapat memungkinkan pertumbuhan bakteri atau jamur.
-														</p>
-													</div>
-												</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>Penyakit</label>
+												<textarea name="penyakit" style="height: 5em;" class="form-control" type="text"></textarea>
 											</div>
 										</div>
 									</div>
+									<div class="col-sm-12 text-right">
+										<div class="dropdown">
+										   <input class="btn btn-primary" type="submit" value="REGISTER" name="add" id="add">
+									    </div>
+									</div>
+								   </form>
+							    </section>
+							</div>
+						</div>
+						
+						<div class="col-lg-8 col-md-6 col-sm-12 mb-30">
+							<div class="card-box pd-30 pt-10 height-100-p">
+								<h2 class="mb-30 h4">List Penyakit</h2>
+								<div class="pb-20">
+									<table class="data-table table stripe hover nowrap">
+										<thead>
+										<tr>
+											<th class="table-plus">No.</th>
+											<th class="table-plus">KODE</th>
+											<th class="table-plus">PENYAKIT</th>
+											<th class="datatable-nosort">AKSI</th>
+										</tr>
+										</thead>
+										<tbody>
+
+											<?php $sql = "SELECT * from dataPenyakit";
+											$query = $dbh -> prepare($sql);
+											$query->execute();
+											$results=$query->fetchAll(PDO::FETCH_OBJ);
+											$cnt=1;
+											if($query->rowCount() > 0)
+											{
+											foreach($results as $result)
+											{               ?>  
+
+											<tr>
+												<td> <?php echo htmlentities($cnt);?></td>
+	                                            <td><?php echo htmlentities($result->kode);?></td>
+	                                            <td><?php echo htmlentities($result->penyakit);?></td>
+												<td>
+													<div class="table-actions">
+														<a href="edit_penyakit.php?edit=<?php echo htmlentities($result->kode);?>" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
+														<a href="penyakit.php?delete=<?php echo htmlentities($result->kode);?>" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
+													</div>
+												</td>
+											</tr>
+
+											<?php $cnt++;} }?>  
+
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
-						<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
 					</div>
-			   </div>
-			</div>
+				</div>
 
 			<?php include('includes/footer.php'); ?>
 		</div>
