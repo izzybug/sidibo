@@ -25,7 +25,7 @@
 	<style>
 	.card {
 	width: 100%;
-	height: 60vh;
+	/* height:; */
 	margin: auto;
 	margin-top: 30px;
 	margin-bottom: 50px;

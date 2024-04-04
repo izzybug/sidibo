@@ -118,20 +118,18 @@
 														Siapa saja yang termasuk dalam kelompok risiko Tuberkulosis Paru?
 														Beberapa kategori individu memiliki risiko lebih tinggi terkena penyakit Tuberkulosis paru, di antaranya: :
 														1. Anak-anak di bawah usia 5 tahun 
-														2. Orang tua yang berusia di atas 65 tahun memiliki risiko lebih tinggi terkena Tuberkulosis paru karena sistem kekebalan tubuh yang rentan.
 														</p>
 													</div>
 												</div>
 											</div>
 											<div class="col-md-4 col-lg-4 box-container">
-												<div class=" bg-white box-shadow border-radius-10 pd-20 mb-20 card">
+												<div class=" bg-white box-shadow border-radius-10 pd-10 mb-20 card">
 													<div class="col align-self-center">
 														<h4 class="mb-4">Bagaimana cara penanganan Tuberkulosis Paru ?</h4>
-														<img src="gambar/6.png" class="card-img-top" alt="..." width="200" height="200" style="width: 200px; height:200px;">
-														<p class="mb-4 mt-5">
+														<img src="gambar/6.png" class="card-img-top" alt="..." width="200" height="200" style="width: 150px; height:150px;">
+														<p class="mb-2 mt-2">
 														Penanganan atau solusi yang dapat dilakukan jika dalam pengisian sistem deteksi dini ini dinyatakan bahwa seseorang berisiko terkena Tuberkulosis paru, meliputi :
 														1. Jika mengalami gejala-gejala TBC paru, segera lakukan pemeriksaan diri ke dokter atau fasilitas pelayanan kesehatan terdekat untuk menindaklanjuti penangan yang tepat dari penyakit tersebut.
-														2. Hidup sehat dengan mengonsumsi makanan yang bergizi dan berolahraga secara teratur.
 														</p>
 													</div>
 												</div>

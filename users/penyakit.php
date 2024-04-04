@@ -24,24 +24,7 @@
 
 	<div class="main-container">
 		<div class="pd-ltr-20">
-			<!-- <div class="card-box pd-20 height-100-p mb-30">
-				<div class="row align-items-center">
-					<div class="col-md-4 user-icon">
-						<img src="../vendors/images/banner-img.png" alt="">
-					</div>
-					<div class="col-md-8">
-
-						<?php $query= mysqli_query($conn,"select * from pengguna where id = '$session_id'")or die(mysqli_error());
-								$row = mysqli_fetch_array($query);
-						?>
-
-						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back <div class="weight-600 font-30 text-blue"><?php echo $row['namaLengkap']; ?>,</div>
-						</h4>
-						<p class="font-18 max-width-600">Ini adalah Sistem Deteksi Dini Tuberkulosis Poltekkes Tasikmalaya.</p>
-					</div>
-				</div>
-			</div> -->
+			
 
 			<div class="card-box mb-30">
 				<div class="pd-20">
@@ -118,20 +101,18 @@
 														Siapa saja yang termasuk dalam kelompok risiko Tuberkulosis Paru?
 														Beberapa kategori individu memiliki risiko lebih tinggi terkena penyakit Tuberkulosis paru, di antaranya: :
 														1. Anak-anak di bawah usia 5 tahun 
-														2. Orang tua yang berusia di atas 65 tahun memiliki risiko lebih tinggi terkena Tuberkulosis paru karena sistem kekebalan tubuh yang rentan.
 														</p>
 													</div>
 												</div>
 											</div>
 											<div class="col-md-4 col-lg-4 box-container">
-												<div class=" bg-white box-shadow border-radius-10 pd-20 mb-20 card">
+												<div class=" bg-white box-shadow border-radius-10 pd-10 mb-20 card">
 													<div class="col align-self-center">
 														<h4 class="mb-4">Bagaimana cara penanganan Tuberkulosis Paru ?</h4>
-														<img src="gambar/6.png" class="card-img-top" alt="..." width="200" height="200" style="width: 200px; height:200px;">
-														<p class="mb-4 mt-5">
+														<img src="gambar/6.png" class="card-img-top" alt="..." width="200" height="200" style="width: 150px; height:150px;">
+														<p class="mb-2 mt-2">
 														Penanganan atau solusi yang dapat dilakukan jika dalam pengisian sistem deteksi dini ini dinyatakan bahwa seseorang berisiko terkena Tuberkulosis paru, meliputi :
 														1. Jika mengalami gejala-gejala TBC paru, segera lakukan pemeriksaan diri ke dokter atau fasilitas pelayanan kesehatan terdekat untuk menindaklanjuti penangan yang tepat dari penyakit tersebut.
-														2. Hidup sehat dengan mengonsumsi makanan yang bergizi dan berolahraga secara teratur.
 														</p>
 													</div>
 												</div>
