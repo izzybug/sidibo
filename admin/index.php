@@ -129,7 +129,7 @@
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
 								<div class="weight-700 font-24 text-dark"><?php echo($leavecount); ?></div>
-								<div class="font-14 text-secondary weight-500">Total Penyakit</div>
+								<div class="font-14 text-secondary weight-500">Hasil Deteksi</div>
 							</div>
 							<div class="widget-icon">
 								<div class="icon" data-color="#ff5b5b"><i class="icon-copy fa fa-hourglass-o" aria-hidden="true"></i></div>
